@@ -2,8 +2,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { AlarmHomeScreen, LoginScreen, SignInSignUp, SplashScreen } from "./screens/index";
+import { AppRegistry } from "react-native";
 
 const Stack = createStackNavigator();
+// AppRegistry.registerComponent("ClockWise", () => App);
 
 const App = () => {
   return (

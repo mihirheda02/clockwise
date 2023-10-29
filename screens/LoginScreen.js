@@ -1,11 +1,35 @@
-import React from "react";
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard } from "react-native";
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, TouchableWithoutFeedback, Keyboard, Alert } from "react-native";
 
 import google from "../assets/google.png";
 import apple from "../assets/apple.jpg";
 import facebook from "../assets/facebook.png";
+import { _signInWithPopup, initiateSignInWithRedirect } from "../services/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 export default LoginScreen = () => {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in
+        Alert.alert("Success", "Successfully signed in!");
+        // You can navigate to another screen or perform other actions here
+      } else {
+        // User is signed out or there was an error
+        // Handle accordingly
+      }
+    });
+
+    // Cleanup the listener when the component is unmounted
+    return () => unsubscribe();
+  }, []);
+
+  const signIn = (provider) => {
+    // implement signIn here
+    initiateSignInWithRedirect(provider);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
@@ -25,11 +49,11 @@ export default LoginScreen = () => {
           <TouchableOpacity style={styles.button}>
             <Image source={apple} style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => signIn("google")}>
             <Image source={google} style={styles.icon} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.button}>
-            <Image source={facebook} style={styles.icon} />
+            <Image source={facebook} style={styles.icon} onPress={() => signIn("facebook")} />
           </TouchableOpacity>
         </View>
 
