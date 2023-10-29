@@ -14,7 +14,7 @@ const AlarmItem = ({ title, time, details, isActive, onToggle }) => {
   );
 };
 
-const AlarmScreen = () => {
+export default AlarmHomeScreen = () => {
   const [defaultAlarmActive, setDefaultAlarmActive] = React.useState(false);
   const [lectureAlarmActive, setLectureAlarmActive] = React.useState(true);
 
@@ -108,5 +108,3 @@ const styles = StyleSheet.create({
     color: "#FFF",
   },
 });
-
-export default AlarmScreen;

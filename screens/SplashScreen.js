@@ -3,7 +3,7 @@ import { StyleSheet, View, Image, Text } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { Border, Color, FontSize, FontFamily } from "../GlobalStyles";
 
-const SplashScreen = () => {
+export default SplashScreen = ({ navigation }) => {
   return (
     <View style={styles.splashScreen}>
       <View style={[styles.splashScreenChild, styles.splashLayout]} />
@@ -14,11 +14,7 @@ const SplashScreen = () => {
         useAngle={true}
         angle={97.06}
       />
-      <Image
-        //style={[styles.maskGroupIcon, styles.maskGroupIconPosition]}
-        resizeMode="cover"
-        //source={require("../assets/mask-group2.png")}
-      />
+      <Image resizeMode="cover" />
       <Text style={styles.clockwise}>ClockWise</Text>
     </View>
   );
@@ -80,5 +76,3 @@ const styles = StyleSheet.create({
     width: "100%",
   },
 });
-
-export default SplashScreen;

@@ -1,31 +1,18 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ImageBackground,
-  Image,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, Image } from "react-native";
 
 import morning1 from "../assets/morning1.jpg";
 
-export default function SignInSignUp() {
+export default SignInSignUp = ({ navigation }) => {
   return (
-    // <ImageBackground
-    //   style={styles.background}
-    //   source={morning1} // Replace with the path to your background image
-    // >
     <View style={styles.container}>
       <Image style={styles.image} source={morning1} />
       <View style={styles.textContainer}>
         <Text style={styles.title}>Let's get connected to</Text>
         <Text style={styles.appName}>ClockWise</Text>
         <Text style={styles.subtitle}>for a great start to your day...</Text>
-        <Text style={styles.description}>
-          Enjoy the most efficient way of waking up for your busy lifestyle.
-        </Text>
-        <TouchableOpacity style={styles.signInButton}>
+        <Text style={styles.description}>Enjoy the most efficient way of waking up for your busy lifestyle.</Text>
+        <TouchableOpacity style={styles.signInButton} onPress={() => navigation.navigate("LoginScreen")}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.signUpButton}>
@@ -33,9 +20,8 @@ export default function SignInSignUp() {
         </TouchableOpacity>
       </View>
     </View>
-    // </ImageBackground>
   );
-}
+};
 
 const styles = StyleSheet.create({
   background: {
@@ -43,9 +29,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // justifyContent: "center",
     alignItems: "center",
-    // paddingHorizontal: 20,
     backgroundColor: "#2B2B2B",
   },
   textContainer: {
