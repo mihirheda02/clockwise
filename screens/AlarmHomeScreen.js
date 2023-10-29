@@ -1,15 +1,21 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Switch, StyleSheet } from "react-native";
 
+const PINK_COLOR = "#FF69B4";
+
 const AlarmItem = ({ title, time, details, isActive, onToggle }) => {
   return (
     <TouchableOpacity style={styles.alarmContainer}>
       <View style={styles.alarmDetails}>
         <Text style={styles.alarmTitle}>{title}</Text>
-        <Text style={styles.alarmTime}>{time}</Text>
+        <Text style={styles.alarmTime}>{time} AM</Text>
         <Text style={styles.alarmDays}>{details}</Text>
       </View>
-      <Switch value={isActive} onValueChange={onToggle} />
+      <Switch
+        value={isActive}
+        onValueChange={onToggle}
+        trackColor={{ false: "#767577", true: PINK_COLOR }}
+      />
     </TouchableOpacity>
   );
 };
@@ -19,10 +25,17 @@ const AlarmScreen = () => {
   const [lectureAlarmActive, setLectureAlarmActive] = React.useState(true);
 
   return (
+    // <View style={styles.container}>
+    //   <View style={styles.header}>
+    //     <Text style={styles.headerTitle}>Alarm</Text>
+    //     <TouchableOpacity style={styles.editButtonContainer}>
+    //       <Text style={styles.editButton}>Edit</Text>
+    //     </TouchableOpacity>
+    //   </View>
     <View style={styles.container}>
-      <View style={styles.header}>
+      <View style={[styles.header, { paddingHorizontal: 0 }]}>
         <Text style={styles.headerTitle}>Alarm</Text>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.editButtonContainer}>
           <Text style={styles.editButton}>Edit</Text>
         </TouchableOpacity>
       </View>
@@ -58,53 +71,63 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 20,
+    justifyContent: "center",
+    alignItems: "flex-end",
+    marginBottom: 30,
+    height: "10%",
   },
   headerTitle: {
-    fontSize: 24,
+    fontSize: 38,
     color: "#FFF",
+    position: "absolute",
+    bottom: 0,
+  },
+  editButtonContainer: {
+    position: "absolute",
+    right: 0,
+    justifyContent: "center",
   },
   editButton: {
-    fontSize: 18,
-    color: "#FFF",
+    fontSize: 24,
+    color: PINK_COLOR,
   },
   alarmContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 20,
-    padding: 10,
+    marginBottom: 30,
+    padding: 30,
     borderRadius: 10,
-    backgroundColor: "#4A4A4A",
+    backgroundColor: "#5A5A5A",
   },
   alarmDetails: {},
   alarmTitle: {
-    fontSize: 18,
-    color: "#FFF",
-  },
-  alarmTime: {
     fontSize: 24,
     color: "#FFF",
   },
+  alarmTime: {
+    fontSize: 50,
+    fontWeight: "bold",
+    paddingVertical: 5,
+    color: "#FFF",
+  },
   alarmDays: {
-    fontSize: 14,
+    fontSize: 18,
     color: "#FFF",
   },
   addButton: {
     position: "absolute",
     bottom: 30,
     right: 30,
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: "#5A5A5A",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: PINK_COLOR,
     justifyContent: "center",
     alignItems: "center",
   },
   plusSign: {
-    fontSize: 24,
+    fontSize: 36,
     color: "#FFF",
   },
 });
